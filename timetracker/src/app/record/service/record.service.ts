@@ -17,7 +17,7 @@ interface RecordResponse {
 })
 export class RecordService {
 
-  private APP_FETCH_URL = environment.apiEndpoint;
+  private APP_FETCH_URL = window.location.hostname;
   records = [{
     "start": "2019-10-22T18:06:33.003+0000",
     "end": "2019-10-22T19:06:33.003+0000",
