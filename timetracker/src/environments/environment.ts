@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiEndpoint: 'https://0.0.0.0:8080'
+    apiEndpoint: 'https://2886795277-8080-kitek02.environments.katacoda.com'
 };
