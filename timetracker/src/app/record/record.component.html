@@ -1,0 +1,70 @@
+<div class="card text-center m-3">
+  <div>
+    <form [formGroup]="recordForm" (ngSubmit)="addRecord(recordForm.value); recordform.resetForm()"
+      #recordform="ngForm">
+      <table align="center">
+        <tr>
+          <th>Email</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Action</th>
+        </tr>
+        <tr>
+          <td><input type="text" name="email" formControlName="email"></td>
+          <td><input type="datetime-local" name="start" formControlName="start" required></td>
+          <td> <input type="datetime-local" name="end" formControlName="end" required></td>
+          <td><input type="submit" [disabled]="!recordForm.valid" class="forsubmit" value="Add"></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <br>
+  <div>
+    <form [formGroup]="searchForm" (ngSubmit)="searchRecord(searchForm.value); searchform.resetForm()"
+      #searchform="ngForm">
+      <table align="center">
+        <tr>
+          <th>Email</th>
+          <th>Action</th>
+        </tr>
+        <tr>
+          <td> <input type="text" name="email" formControlName="email"></td>
+          <td><input type="submit" [disabled]="!searchForm.valid" class="forsubmit" value="Search"></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <br>
+  <div *ngIf="items.length>0; else showNoRecords">
+    <div class="card-body">
+      <table align="center">
+        <tr>
+          <th>Email</th>
+          <th>Start</th>
+          <th>End</th>
+        </tr>
+        <tr *ngFor="let item of items">
+          <td>{{item.email}}</td>
+          <td>{{item.start}}</td>
+          <td>{{item.end}}</td>
+        </tr>
+      </table>
+    </div>
+    <br>
+    <div class="card-footer pb-0 pt-3">
+      <table align="center">
+        <tr>
+          <td><input type="button" class="form-control" [disabled]="currentPage<=0" value="Previous"
+              (click)="prevPage()"></td>
+              <td><input type="button" class="form-control"  value="Home"  (click)="home()"></td>
+          <td><input type="button" class="form-control" [disabled]="items.length<paginationSize" value="Next"
+              (click)="nextPage()"></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div align="center">Current page:{{currentPage}}</div>
+  <ng-template #showNoRecords>
+    <div align="center">No Records Found</div>
+  </ng-template>
+</div>
