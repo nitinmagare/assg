@@ -17,7 +17,8 @@ interface RecordResponse {
 })
 export class RecordService {
 
-  // private APP_FETCH_URL = window.location.hostname; 
+  private APP_FETCH_URL = environment.apiEndpoint;
+  private  s = window.location.hostname;
   records = [{
     "start": "2019-10-22T18:06:33.003+0000",
     "end": "2019-10-22T19:06:33.003+0000",
@@ -99,7 +100,7 @@ export class RecordService {
     this.records = data;
   }
   public getRecords(offset: number, length: number) {
-    let url =   "/records?offset=" + offset + "&length=" + length;
+    let url = this.APP_FETCH_URL + "/records?offset=" + offset + "&length=" + length;
     console.log(url);     
     this.httpClient.get(url).subscribe((data) => this.setRecords(data));
     return this.records.slice(offset, length); 
@@ -119,7 +120,7 @@ export class RecordService {
   // }
 
   public searchRecords(data, length: number) {
-    let url = "/records?email=" + data.email + "&length=" + length; 
+    let url = this.APP_FETCH_URL + "/records?email=" + data.email + "&length=" + length; 
     this.httpClient.get(url).subscribe((data) => this.setRecords(data));
      return this.records.filter(record => record.email == data.email);
 }
