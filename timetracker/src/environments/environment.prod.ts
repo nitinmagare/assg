@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  proxyEndPoint:"http://localhost:8085",
-  apiEndpoint: "http://3.82.26.126:8080/"
+  proxyEndPoint:"https://cors-anywhere.herokuapp.com",
+  apiEndpoint: ":8080/"
 };

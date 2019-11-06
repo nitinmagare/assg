@@ -78,7 +78,7 @@ export class RecordComponent implements OnInit {
   searchRecord(input) {
     this.currentPage = 0;
     this.recordService.searchRecords(input, this.paginationSize).subscribe((res) => { 
-      console.log(res);     
+      // console.log(res);     
         
       this.items = this.handleNull(res);
     });
