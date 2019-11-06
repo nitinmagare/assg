@@ -35,7 +35,7 @@
     </form>
   </div>
   <br>
-  <div *ngIf="items.length>0; else showNoRecords">
+  <div *ngIf="items.length>0 && items[0]!=null; else showNoRecords">
     <div class="card-body">
       <table align="center">
         <tr>
@@ -43,10 +43,10 @@
           <th>Start</th>
           <th>End</th>
         </tr>
-        <tr *ngFor="let item of items">
-          <td>{{item.email}}</td>
-          <td>{{item.start}}</td>
-          <td>{{item.end}}</td>
+        <tr *ngFor="let item of items" >
+          <td>{{item!=null?item.email:""}}</td>
+          <td>{{item!=null?item.start:""}}</td>
+          <td>{{item!=null?item.end:""}}</td>
         </tr>
       </table>
     </div>
@@ -57,7 +57,7 @@
           <td><input type="button" class="form-control" [disabled]="currentPage<=0" value="Previous"
               (click)="prevPage()"></td>
               <td><input type="button" class="form-control"  value="Home"  (click)="home()"></td>
-          <td><input type="button" class="form-control" [disabled]="items.length<paginationSize" value="Next"
+          <td><input type="button" class="form-control" [disabled]="this.items.length<this.paginationSize || this.items.includes(null)" value="Next"
               (click)="nextPage()"></td>
         </tr>
       </table>
